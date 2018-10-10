@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="got.css">
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+        //OPEN IN INCOGNITO BROWSER
+        $(document).ready(function(){
+            $(document).on("click","img",function(){
+                var id = $(this).attr("id");
+                $.get("https://anapioficeandfire.com/api/houses/"+id, function(res){
+                    console.log(res.words);
+                    var name = res.name;
+                    var words = res.words;
+                    var titles = ""
+                    for (var x=0; x<res["titles"].length;x++){
+                        titles+= "<li>"+res['titles'][x]+"</li>";
+                    };
+                    $("#info").html("<h1>"+name+"</h1>"+"<p>"+words+"</p>"+"<ul>"+titles+"</ul>");
+                })
+                
+
+            })
+
+        })
+    
+    </script>
+</head>
+<body>
+    <div id="house">
+        <img id="229"src="lannister.jpg" alt="Lannister">
+        <img id="17"src="baratheon.png" alt="Baratheon">
+        <img id="362"src="stark.jpg" alt="Stark">
+        <img id="378"src="targaryen.jpg" alt="Targaryen">
+    </div>
+    <div id="info">
+
+    </div>
+</body>
+</html>
